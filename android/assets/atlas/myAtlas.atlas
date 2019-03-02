@@ -1,0 +1,170 @@
+
+myAtlas.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+clock
+  rotate: false
+  xy: 1028, 302
+  size: 225, 225
+  orig: 225, 225
+  offset: 0, 0
+  index: -1
+cross
+  rotate: false
+  xy: 2, 970
+  size: 1024, 1047
+  orig: 1024, 1047
+  offset: 0, 0
+  index: -1
+food
+  rotate: false
+  xy: 1028, 993
+  size: 1010, 1024
+  orig: 1010, 1024
+  offset: 0, 0
+  index: -1
+lampe
+  rotate: false
+  xy: 2, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+tama
+  rotate: false
+  xy: 2, 104
+  size: 1024, 864
+  orig: 1024, 864
+  offset: 0, 0
+  index: -1
+x
+  rotate: false
+  xy: 1028, 529
+  size: 400, 462
+  orig: 400, 462
+  offset: 0, 0
+  index: -1
+
+myAtlas2.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+arrow-up
+  rotate: false
+  xy: 2, 1248
+  size: 1024, 794
+  orig: 1024, 794
+  offset: 0, 0
+  index: -1
+carrot
+  rotate: false
+  xy: 2, 2
+  size: 1024, 461
+  orig: 1024, 461
+  offset: 0, 0
+  index: -1
+dialog
+  rotate: false
+  xy: 1028, 1018
+  size: 759, 1024
+  orig: 759, 1024
+  offset: 0, 0
+  index: -1
+waage
+  rotate: false
+  xy: 2, 465
+  size: 1024, 781
+  orig: 1024, 781
+  offset: 0, 0
+  index: -1
+
+myAtlas3.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ei
+  rotate: false
+  xy: 2, 2
+  size: 725, 1024
+  orig: 725, 1024
+  offset: 0, 0
+  index: -1
+klo
+  rotate: false
+  xy: 1028, 779
+  size: 705, 1024
+  orig: 705, 1024
+  offset: 0, 0
+  index: -1
+menu
+  rotate: false
+  xy: 2, 1028
+  size: 1024, 775
+  orig: 1024, 775
+  offset: 0, 0
+  index: -1
+message
+  rotate: false
+  xy: 729, 72
+  size: 1024, 705
+  orig: 1024, 705
+  offset: 0, 0
+  index: -1
+
+myAtlas4.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+candy
+  rotate: false
+  xy: 2, 1232
+  size: 1024, 644
+  orig: 1024, 644
+  offset: 0, 0
+  index: -1
+candy_green
+  rotate: false
+  xy: 2, 586
+  size: 1024, 644
+  orig: 1024, 644
+  offset: 0, 0
+  index: -1
+controller
+  rotate: false
+  xy: 2, 2
+  size: 1024, 582
+  orig: 1024, 582
+  offset: 0, 0
+  index: -1
+spritze
+  rotate: false
+  xy: 1028, 852
+  size: 626, 1024
+  orig: 626, 1024
+  offset: 0, 0
+  index: -1
+
+myAtlas5.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+carrot_green
+  rotate: false
+  xy: 630, 565
+  size: 1024, 461
+  orig: 1024, 461
+  offset: 0, 0
+  index: -1
+spritze_grün
+  rotate: false
+  xy: 2, 2
+  size: 626, 1024
+  orig: 626, 1024
+  offset: 0, 0
+  index: -1
