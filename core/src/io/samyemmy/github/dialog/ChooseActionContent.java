@@ -43,9 +43,8 @@ public class ChooseActionContent extends Table implements DialogContent
 
     private void addButton(String fileName)
     {
-        BaseDrawableActor button = new BaseDrawableActor(MyGame.skinDefault, fileName);
+        BaseDrawableActor button = new BaseDrawableActor(MyGame.skinDefault, fileName, 150, 150);
         button.addListener(listener);
-        button.setSize(150,150);
         this.launchButtons.add(button);
     }
 

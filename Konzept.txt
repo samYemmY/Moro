@@ -1,6 +1,7 @@
 Essen:
 	- Meal oder Snack
 	- Wenn volle Saturation nur Snacks möglich
+	- Snack
 	
 Happiness:
 	- durch Snacks
@@ -28,7 +29,7 @@ Krankheit:
 	
 Aufmerksamkeit:
 	- Indikator
-	- Bei benötigter Aufmerksamkeit 
+	- Bei benötigter Aufmerksamkeit punish, bei nicht benötigter praise möglich
 	
 Disziplin:
 	- bei Aufmerksamkeit ohne Grund
@@ -51,3 +52,4 @@ Form:
 	
 Tamagotchi:
 	- Energie <-> Spielen
+	- Snackanzeige. Bei zu vielen Snacks hintereinander wird es krank

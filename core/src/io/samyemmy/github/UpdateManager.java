@@ -11,16 +11,16 @@ class UpdateManager
 {
     private static final String TAG = "UpdateManager";
     private FileManager fileManager;
-    private MainScreen mainScreen;
+    private StatsDialog statsDialog;
 
     UpdateManager(File filesDir)
     {
         this.fileManager = new FileManager(filesDir);
     }
-    UpdateManager(FileManager fileManager, MainScreen mainScreen)
+    UpdateManager(FileManager fileManager, StatsDialog statsDialog)
     {
         this.fileManager = fileManager;
-        this.mainScreen = mainScreen;
+        this.statsDialog = statsDialog;
     }
 
     void background()
@@ -35,9 +35,8 @@ class UpdateManager
     void foreground()
     {
         Gdx.app.debug(TAG, "foreground()");
-        StatsDialog dialog = mainScreen.getStatsDialog();
 
-        if (dialog == null)
+        if (statsDialog == null)
         {
             Gdx.app.debug(TAG,"StatsDialog is null. Returning.");
             return;
@@ -45,9 +44,9 @@ class UpdateManager
 
         Tamagotchi tamagotchi = MyGame.getInstance().getTamagotchi();
         tamagotchi.update();
-        dialog.getStatusBarSaturation().setValue(tamagotchi.getSaturation());
-        dialog.getStatusBarHappiness().setValue(tamagotchi.getHappiness());
-        dialog.getStatusBarDiscipline().setValue(tamagotchi.getDiscipline());
-        dialog.getStatusBarBody().setValue(tamagotchi.getBody());
+        statsDialog.getStatusBarSaturation().setValue(tamagotchi.getSaturation());
+        statsDialog.getStatusBarHappiness().setValue(tamagotchi.getHappiness());
+        statsDialog.getStatusBarDiscipline().setValue(tamagotchi.getDiscipline());
+        statsDialog.getStatusBarBody().setValue(tamagotchi.getBody());
     }
 }

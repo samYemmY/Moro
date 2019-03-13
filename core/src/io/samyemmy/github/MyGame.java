@@ -14,24 +14,11 @@ public class MyGame extends Game
 	private static MyGame instance;
 	private static final String TAG = "MyGame";
 	public static Skin skinDefault;
-	public Tamagotchi getTamagotchi()
-	{
-		return tamagotchi;
-	}
-	public void setTamagotchi(Tamagotchi tamagotchi)
-	{
-		this.tamagotchi = tamagotchi;
-	}
 	private Tamagotchi tamagotchi;
 	private FileManager fileManager;
-	private UpdateManager updateManager;
-	public Android getAndroid() {
-		return android;
-	}
-	public void setAndroid(Android android) {
-		this.android = android;
-	}
 	private Android android;
+	private MainScreen mainScreen;
+
 	private MyGame(Android android)
 	{
 		setAndroid(android);
@@ -57,6 +44,22 @@ public class MyGame extends Game
 		return MyGame.instance;
 	}
 
+	public Android getAndroid() {
+		return android;
+	}
+	public void setAndroid(Android android) {
+		this.android = android;
+	}
+	public Tamagotchi getTamagotchi()
+	{
+		return tamagotchi;
+	}
+	void setTamagotchi(Tamagotchi tamagotchi)
+	{
+		this.tamagotchi = tamagotchi;
+	}
+	public MainScreen getMainScreen(){ return mainScreen; }
+
 	@Override
 	public void create ()
 	{
@@ -65,16 +68,10 @@ public class MyGame extends Game
 		MyGame.skinDefault = new Skin(Gdx.files.internal("mySkin.json"), new TextureAtlas(Gdx.files.internal("atlas/myAtlas.atlas")));
 		FileManager fileManager = new FileManager(Gdx.files.local("").file());
 		setTamagotchi(new Tamagotchi(fileManager.deserialize()));
-		MainScreen mainScreen = new MainScreen(this);
-		this.updateManager = new UpdateManager(fileManager, mainScreen);
+		MainScreen mainScreen = new MainScreen();
 		this.fileManager = fileManager;
-		new Timer().scheduleTask(new Timer.Task() {
-			@Override
-			public void run() {
-				updateManager.foreground();
-			}
-		},0, 20);
-		this.setScreen(new MainScreen(this));
+		this.setScreen(mainScreen);
+		this.mainScreen = mainScreen;
 	}
 
 	@Override

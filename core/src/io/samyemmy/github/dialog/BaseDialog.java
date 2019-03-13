@@ -62,8 +62,7 @@ public abstract class BaseDialog extends Group
         Table closeBtnTable = new Table();
         closeBtnTable.right();
 
-        BaseDrawableActor btnClose = new BaseDrawableActor(MyGame.skinDefault, "x");
-        btnClose.setSize(150, 150);
+        BaseDrawableActor btnClose = new BaseDrawableActor(MyGame.skinDefault, "x", 150, 150);
         btnClose.addListener(getInputListener());
         closeBtnTable.add(btnClose).padRight(30);
 
@@ -75,8 +74,7 @@ public abstract class BaseDialog extends Group
 
     public void setBackground(String fileName)
     {
-        BaseDrawableActor background = new BaseDrawableActor(MyGame.skinDefault, fileName);
-        background.setSize(getWidth(), getHeight());
+        BaseDrawableActor background = new BaseDrawableActor(MyGame.skinDefault, fileName, getWidth(), getHeight());
         background.setName("background");
         addActor(background);
     }
