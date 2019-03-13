@@ -2,98 +2,81 @@ package io.samyemmy.github;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Cell;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Window;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
-import java.util.ArrayList;
+import io.samyemmy.github.MyGame;
+import io.samyemmy.github.TabBar;
+import io.samyemmy.github.dialog.ActionDialog;
+import io.samyemmy.github.dialog.BaseDialog;
+import io.samyemmy.github.dialog.ChooseMealContent;
+import io.samyemmy.github.dialog.StatsDialog;
 
 public class MainScreen implements Screen
 {
+    private static final String TAG = "MainScreen";
     private MyGame game;
-    private static int padding = 20;
     private OrthographicCamera camera;
     private Stage stage;
-    private Tamagotchi sprTamagotchi;
-    private ActionBar actionBar;
-    private Launchpad launchpad;
-    private Actor dropzone;
 
-    public MainScreen(MyGame game)
+    ActionDialog getActionDialog() {
+        return actionDialog;
+    }
+
+    private ActionDialog actionDialog;
+
+    public StatsDialog getStatsDialog() {
+        return statsDialog;
+    }
+
+    private StatsDialog statsDialog;
+
+    MainScreen(MyGame game)
     {
         this.game = game;
-        sprTamagotchi = new Tamagotchi();
+        this.actionDialog = new ActionDialog();
+        this.statsDialog = new StatsDialog();
+        
+        OrthographicCamera cam = new OrthographicCamera();
+        cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        this.camera = cam;
+
+        TabBar tabBar = new TabBar(this);
+
+        Stage stage = new Stage(new StretchViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera));
+        stage.addActor(game.getTamagotchi());
+        stage.addActor(tabBar);
+        stage.addActor(actionDialog);
+        stage.addActor(statsDialog);
+        Gdx.input.setInputProcessor(stage);
+        this.stage = stage;
     }
 
     @Override
-    public void show()
-    {
-        // Camera
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
-        // Stage
-        stage = new Stage(new StretchViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera));
-        Gdx.input.setInputProcessor(stage);
-
-        Launchpad launchpad = new Launchpad("", this);
-        launchpad.setPosition(Gdx.graphics.getWidth() / 2 - launchpad.getWidth() / 2,Gdx.graphics.getHeight() / 2 - launchpad.getHeight() / 2);
-        launchpad.setVisible(false);
-        this.launchpad = launchpad;
-        stage.addActor(launchpad);
-
-        TabBar tabBar = new TabBar(this);
-        stage.addActor(tabBar);
-
-//        dropzone = new Actor();
-//        dropzone.setBounds(0, viewHeight - viewHeight/6, viewWidth, viewHeight - 2* (viewHeight/6));
-//        dropzone.debug();
-//        stage.addActor(dropzone);
-
-        // Action Bar
-        actionBar = new ActionBar(dropzone);
-        actionBar.debug();
-        //stage.addActor(actionBar);
+    public void show() {
+        Gdx.app.debug(TAG, "show()");
     }
 
     @Override
     public void render(float delta)
     {
-        game.batch.setProjectionMatrix(camera.combined);
-
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();
 
-        game.batch.begin();
-        this.sprTamagotchi.draw(game.batch);
-        game.batch.end();
         stage.draw();
         stage.act();
     }
 
-    public void toggleLaunchPad()
+    void toggleDialog(BaseDialog dialog)
     {
-        this.launchpad.setVisible(!this.launchpad.isVisible());
+        dialog.toggle();
     }
+
 
     @Override
     public void resize(int width, int height)
@@ -108,7 +91,6 @@ public class MainScreen implements Screen
 
     @Override
     public void resume() {
-
     }
 
     @Override

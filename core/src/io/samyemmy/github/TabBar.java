@@ -3,26 +3,17 @@ package io.samyemmy.github;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
-import javax.swing.event.ChangeEvent;
-import javax.xml.soap.Text;
-
 public class TabBar extends Table
 {
-    TextButton txtBtnStats;
-    TextButton txtBtnActions;
-    TextButton txtBtnLight;
     MainScreen screen;
 
-    public TabBar(final MainScreen screen)
+    public TabBar(MainScreen screen)
     {
-        super();
         this.screen = screen;
-        setSkin(MyGame.skinDefault);
         float height = 0.1f * Gdx.graphics.getHeight();
         setBounds(0, Gdx.graphics.getHeight() - height, Gdx.graphics.getWidth(), height);
 
@@ -35,7 +26,7 @@ public class TabBar extends Table
         txtBtnStats.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                TabBar.this.onClickStats();
+                TabBar.this.onClick("Stats");
             }
         });
         add(txtBtnStats).grow();
@@ -44,7 +35,7 @@ public class TabBar extends Table
         txtBtnActions.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                TabBar.this.onClickActions();
+                TabBar.this.onClick("Actions");
             }
         });
         add(txtBtnActions).grow();
@@ -53,26 +44,23 @@ public class TabBar extends Table
         txtBtnLight.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                TabBar.this.onClickLight();
+                TabBar.this.onClick("Light");
             }
         });
         add(txtBtnLight).grow();
-
-        debug();
     }
 
-    private void onClickStats()
+    private void onClick(String action)
     {
-
-    }
-
-    private void onClickActions()
-    {
-        this.screen.toggleLaunchPad();
-    }
-
-    private void onClickLight()
-    {
-
+        if (action.equals("Actions"))
+        {
+            screen.getStatsDialog().hide();
+            screen.toggleDialog(screen.getActionDialog());
+        }
+        else if (action.equals("Stats"))
+        {
+            screen.getActionDialog().hide();
+            screen.toggleDialog(screen.getStatsDialog());
+        }
     }
 }

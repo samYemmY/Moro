@@ -1,0 +1,53 @@
+Essen:
+	- Meal oder Snack
+	- Wenn volle Saturation nur Snacks möglich
+	
+Happiness:
+	- durch Snacks
+	
+Schlaf:
+	- Energie steigt
+	- Licht ausschalten als Trigger
+	- Licht wird automatisch wieder eingeschaltet
+	
+Toilette:
+	- wenn hohes saturationlevel dann scheißt es regelmäßig
+	
+Games:
+	- verbraucht Energie
+	- 5 Versuche pro Session
+	- Gamemenü: Xp Balken zeigt an wieviel noch fehlt zum nächsten +1 Body
+	- Steigert Happiness
+
+Krankheit:
+	- Indikator
+	- bei zu vielen Snacks
+	- bei zu langem Expose zu Kacke
+	- Krankheitslevel kann verschlimmert werden -> Mehr Injektionen werden benötigt
+	- zu lange Krank = Tod
+	
+Aufmerksamkeit:
+	- Indikator
+	- Bei benötigter Aufmerksamkeit 
+	
+Disziplin:
+	- bei Aufmerksamkeit ohne Grund
+	- bei Spielverweigerung mit wenig Happiness
+	- bei Essensverweigerung mit wenig Saturation
+	
+Lebenszeit:
+	- maximale Lebensdauer = 30 Tage = 30 Tamajahre
+	- 4 Lebensphasen werden getriggert durch Body-Anzeige
+	- nach Ablauf -> Tama hinzugefügt zu Eier-Collection
+	
+States:
+	- Toilet State
+	- Satisfied State
+	- NeedsAttentionState
+	
+Form:
+	- 4 Entwicklungsphasen
+	- Lebensdauer beeinflusst letzte Form
+	
+Tamagotchi:
+	- Energie <-> Spielen

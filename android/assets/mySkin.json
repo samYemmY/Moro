@@ -1,8 +1,4 @@
 {
-  com.badlogic.gdx.graphics.g2d.BitmapFont:
-  {
-	  default-font: {file: "font/default.fnt" },
-  },
   com.badlogic.gdx.graphics.Color: 
   {
 	  black: {a: 1, b: 0, g: 0, r: 0 },
@@ -16,17 +12,9 @@
 	  menuitem: {a: 1, b: 0.65, g: 0.65, r: 0.65 },
 	  link-label: {a: 1, b: 0.886, g: 0.631, r: 0.105 }
   },
-  com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle:
-  {
-	  default: {titleFont: default-font, background: dialog, titleFontColor: white }
-  },
   com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: 
   {
 	  default: {down: lampe, up: lampe },
 	  x: {down: x, up: x}
   },
-  com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle:
-  {
-	  default: {font: default-font, fontColor: black },
-  }
 }

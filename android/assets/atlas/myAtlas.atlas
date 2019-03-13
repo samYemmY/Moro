@@ -4,44 +4,72 @@ size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+attention
+  rotate: false
+  xy: 1632, 100
+  size: 100, 257
+  orig: 100, 257
+  offset: 0, 0
+  index: -1
 clock
   rotate: false
-  xy: 1028, 302
+  xy: 1632, 359
   size: 225, 225
   orig: 225, 225
   offset: 0, 0
   index: -1
-cross
+controller
   rotate: false
-  xy: 2, 970
-  size: 1024, 1047
-  orig: 1024, 1047
-  offset: 0, 0
-  index: -1
-food
-  rotate: false
-  xy: 1028, 993
-  size: 1010, 1024
-  orig: 1010, 1024
+  xy: 2, 2
+  size: 1024, 582
+  orig: 1024, 582
   offset: 0, 0
   index: -1
 lampe
   rotate: false
-  xy: 2, 2
+  xy: 1430, 75
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-tama
+progressbar-0
   rotate: false
-  xy: 2, 104
-  size: 1024, 864
-  orig: 1024, 864
+  xy: 2, 1669
+  size: 2000, 359
+  orig: 2000, 359
+  offset: 0, 0
+  index: -1
+progressbar-100
+  rotate: false
+  xy: 2, 947
+  size: 2000, 359
+  orig: 2000, 359
+  offset: 0, 0
+  index: -1
+progressbar-16,6
+  rotate: false
+  xy: 2, 586
+  size: 2000, 359
+  orig: 2000, 359
+  offset: 0, 0
+  index: -1
+progressbar-50
+  rotate: false
+  xy: 2, 1308
+  size: 2000, 359
+  orig: 2000, 359
+  offset: 0, 0
+  index: -1
+sick
+  rotate: false
+  xy: 1430, 177
+  size: 200, 407
+  orig: 200, 407
   offset: 0, 0
   index: -1
 x
   rotate: false
-  xy: 1028, 529
+  xy: 1028, 122
   size: 400, 462
   orig: 400, 462
   offset: 0, 0
@@ -52,32 +80,39 @@ size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-arrow-up
+carrot
   rotate: false
-  xy: 2, 1248
-  size: 1024, 794
-  orig: 1024, 794
+  xy: 2, 465
+  size: 1024, 461
+  orig: 1024, 461
   offset: 0, 0
   index: -1
-carrot
+carrot_green
   rotate: false
   xy: 2, 2
   size: 1024, 461
   orig: 1024, 461
   offset: 0, 0
   index: -1
-dialog
+progressbar-33,3
   rotate: false
-  xy: 1028, 1018
-  size: 759, 1024
-  orig: 759, 1024
+  xy: 2, 1650
+  size: 2000, 359
+  orig: 2000, 359
   offset: 0, 0
   index: -1
-waage
+progressbar-66,6
   rotate: false
-  xy: 2, 465
-  size: 1024, 781
-  orig: 1024, 781
+  xy: 2, 1289
+  size: 2000, 359
+  orig: 2000, 359
+  offset: 0, 0
+  index: -1
+progressbar-83,3
+  rotate: false
+  xy: 2, 928
+  size: 2000, 359
+  orig: 2000, 359
   offset: 0, 0
   index: -1
 
@@ -86,32 +121,25 @@ size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-ei
+cross
+  rotate: false
+  xy: 2, 868
+  size: 1024, 1047
+  orig: 1024, 1047
+  offset: 0, 0
+  index: -1
+food
+  rotate: false
+  xy: 1028, 891
+  size: 1010, 1024
+  orig: 1010, 1024
+  offset: 0, 0
+  index: -1
+tama
   rotate: false
   xy: 2, 2
-  size: 725, 1024
-  orig: 725, 1024
-  offset: 0, 0
-  index: -1
-klo
-  rotate: false
-  xy: 1028, 779
-  size: 705, 1024
-  orig: 705, 1024
-  offset: 0, 0
-  index: -1
-menu
-  rotate: false
-  xy: 2, 1028
-  size: 1024, 775
-  orig: 1024, 775
-  offset: 0, 0
-  index: -1
-message
-  rotate: false
-  xy: 729, 72
-  size: 1024, 705
-  orig: 1024, 705
+  size: 1024, 864
+  orig: 1024, 864
   offset: 0, 0
   index: -1
 
@@ -122,30 +150,30 @@ filter: Nearest,Nearest
 repeat: none
 candy
   rotate: false
-  xy: 2, 1232
+  xy: 2, 1355
   size: 1024, 644
   orig: 1024, 644
   offset: 0, 0
   index: -1
 candy_green
   rotate: false
-  xy: 2, 586
+  xy: 2, 709
   size: 1024, 644
   orig: 1024, 644
   offset: 0, 0
   index: -1
-controller
+dialog
   rotate: false
-  xy: 2, 2
-  size: 1024, 582
-  orig: 1024, 582
+  xy: 1028, 975
+  size: 759, 1024
+  orig: 759, 1024
   offset: 0, 0
   index: -1
-spritze
+message
   rotate: false
-  xy: 1028, 852
-  size: 626, 1024
-  orig: 626, 1024
+  xy: 2, 2
+  size: 1024, 705
+  orig: 1024, 705
   offset: 0, 0
   index: -1
 
@@ -154,17 +182,58 @@ size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-carrot_green
+arrow-up
   rotate: false
-  xy: 630, 565
-  size: 1024, 461
-  orig: 1024, 461
+  xy: 2, 785
+  size: 1024, 794
+  orig: 1024, 794
   offset: 0, 0
   index: -1
-spritze_grün
+ei
+  rotate: false
+  xy: 1028, 555
+  size: 725, 1024
+  orig: 725, 1024
+  offset: 0, 0
+  index: -1
+waage
   rotate: false
   xy: 2, 2
+  size: 1024, 781
+  orig: 1024, 781
+  offset: 0, 0
+  index: -1
+
+myAtlas6.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+menu
+  rotate: false
+  xy: 2, 1028
+  size: 1024, 775
+  orig: 1024, 775
+  offset: 0, 0
+  index: -1
+syringe
+  rotate: false
+  xy: 709, 2
   size: 626, 1024
   orig: 626, 1024
+  offset: 0, 0
+  index: -1
+syringe_green
+  rotate: false
+  xy: 1337, 779
+  size: 626, 1024
+  orig: 626, 1024
+  offset: 0, 0
+  index: -1
+toilet
+  rotate: false
+  xy: 2, 2
+  size: 705, 1024
+  orig: 705, 1024
   offset: 0, 0
   index: -1
