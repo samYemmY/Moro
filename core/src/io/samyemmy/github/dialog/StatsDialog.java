@@ -1,24 +1,16 @@
 package io.samyemmy.github.dialog;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-
-import io.samyemmy.github.Font;
-import io.samyemmy.github.MyGame;
-import io.samyemmy.github.TabBar;
 import io.samyemmy.github.ui.StatusBar;
 
 public class StatsDialog extends BaseDialog
 {
     private static final String TAG = "StatsDialog";
-    private Table contentTable;
     private StatusBar statusBarHappiness;
     private StatusBar statusBarSaturation;
-    private StatusBar statusBarBody;
+    private StatusBar statusBarEnergy;
+    private StatusBar statusBarDiscipline;
 
     public StatusBar getStatusBarHappiness() {
         return statusBarHappiness;
@@ -29,9 +21,8 @@ public class StatsDialog extends BaseDialog
     public StatusBar getStatusBarDiscipline() {
         return statusBarDiscipline;
     }
-    private StatusBar statusBarDiscipline;
-    public StatusBar getStatusBarBody() {
-        return statusBarBody;
+    public StatusBar getStatusBarEnergy() {
+        return statusBarEnergy;
     }
 
     public StatsDialog()
@@ -40,16 +31,16 @@ public class StatsDialog extends BaseDialog
         Gdx.app.debug(TAG, "StatsDialog()");
         this.statusBarSaturation = new StatusBar("Saturation");
         this.statusBarHappiness = new StatusBar("Happiness");
+        this.statusBarEnergy = new StatusBar("Energy");
         this.statusBarDiscipline = new StatusBar("Discipline");
-        this.statusBarBody = new StatusBar("Body");
 
         Table contentTable = new Table();
         contentTable.add(this.statusBarSaturation).grow().row();
         contentTable.add(this.statusBarHappiness).grow().row();
-        contentTable.add(this.statusBarDiscipline).grow().row();
-        contentTable.add(this.statusBarBody).grow();
-        contentTable.setSize(getWidth(), getHeight() * 0.8f);
-        contentTable.setY(getY() + 60);
+        contentTable.add(this.statusBarEnergy).grow().row();
+        contentTable.add(this.statusBarDiscipline).grow();
+        contentTable.setSize(getWidth(), getHeight() * 0.75f);
+        contentTable.setPosition(getWidth() / 2 - contentTable.getWidth() / 2, getHeight() / 2 - contentTable.getHeight() / 2);
         addActor(contentTable);
 
         setVisible(false);

@@ -5,6 +5,7 @@ Essen:
 	
 Happiness:
 	- durch Snacks
+	- durch Games
 	
 Schlaf:
 	- Energie steigt
@@ -12,13 +13,14 @@ Schlaf:
 	- Licht wird automatisch wieder eingeschaltet
 	
 Toilette:
-	- wenn hohes saturationlevel dann scheißt es regelmäßig
+	- scheißt regelmäßig
 	
 Games:
 	- verbraucht Energie
 	- 5 Versuche pro Session
 	- Gamemenü: Xp Balken zeigt an wieviel noch fehlt zum nächsten +1 Body
 	- Steigert Happiness
+	- Manchmal Random Gameblockade für 10 Minuten
 
 Krankheit:
 	- Indikator
@@ -33,6 +35,7 @@ Aufmerksamkeit:
 	
 Disziplin:
 	- bei Aufmerksamkeit ohne Grund
+	
 	- bei Spielverweigerung mit wenig Happiness
 	- bei Essensverweigerung mit wenig Saturation
 	

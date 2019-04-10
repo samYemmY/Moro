@@ -17,6 +17,7 @@ class UpdateManager
     {
         this.fileManager = new FileManager(filesDir);
     }
+
     UpdateManager(FileManager fileManager, StatsDialog statsDialog)
     {
         this.fileManager = fileManager;
@@ -25,10 +26,8 @@ class UpdateManager
 
     void background()
     {
-        Gdx.app.debug(TAG, "background()");
         Tamagotchi tamagotchi = new Tamagotchi(fileManager.deserialize());
-        tamagotchi.update();
-        MyGame.getInstance().setTamagotchi(tamagotchi);
+        tamagotchi.update(false);
         fileManager.serialize(tamagotchi.getSerializable());
     }
 
@@ -43,10 +42,10 @@ class UpdateManager
         }
 
         Tamagotchi tamagotchi = MyGame.getInstance().getTamagotchi();
-        tamagotchi.update();
+        tamagotchi.update(true);
         statsDialog.getStatusBarSaturation().setValue(tamagotchi.getSaturation());
         statsDialog.getStatusBarHappiness().setValue(tamagotchi.getHappiness());
         statsDialog.getStatusBarDiscipline().setValue(tamagotchi.getDiscipline());
-        statsDialog.getStatusBarBody().setValue(tamagotchi.getBody());
+        statsDialog.getStatusBarEnergy().setValue(tamagotchi.getEnergy());
     }
 }

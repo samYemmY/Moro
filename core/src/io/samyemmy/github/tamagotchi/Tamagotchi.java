@@ -1,49 +1,44 @@
 package io.samyemmy.github.tamagotchi;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.utils.TimeUtils;
-
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-
-import io.samyemmy.github.BaseDrawableActor;
+import com.badlogic.gdx.utils.Timer;
+import io.samyemmy.github.AnimatableActor;
 import io.samyemmy.github.MyGame;
-import io.samyemmy.github.Poop;
+import io.samyemmy.github.Utils;
 
-public class Tamagotchi extends BaseDrawableActor
+public class Tamagotchi extends AnimatableActor
 {
     private static final String TAG = "Tamagotchi";
-    private int saturationLifespan = 6; // hours
-    private int happinessLifespan = 12; // hours
-    private int poopCycle = 5; // minutes
-    private int minValue = 1;
-    private int maxValue = 100;
-    private float saturation = 19;
-    private float happiness = maxValue;
-    private float discipline = minValue;
-    private float health = maxValue;
-    private float body = minValue;
-    private long lastTimestamp;
-    private boolean needsAttention = false;
-
+    private static final int saturationLifespan = 3; // hours
+    private static final int happinessLifespan = 2; // hours
+    private static final int healthRegenerationDuration = 1; // hour
+    private static final int poopCycle = 30; // minutes
+    private static final int randomAttentionCycle = 10; // minutes
+    private float saturation = 100;
+    private float happiness = 100;
+    private float discipline = 0;
+    private float health = 100;
+    private float energy = 100;
+    private float body = 0;
+    long timestampSaturation;
+    long timestampHappiness;
+    long timestampHealth;
+    long timestampPoop;
+    long timestampRandomAttention;
+    boolean punishableAttentionFlag;
+    boolean needsAttention = false;
+    public boolean isPunishable = false;
+    public boolean isSick = false;
+    public boolean hasActiveAction = false;
+    public boolean isAlive = true;
     public float getSaturation() {
         return saturation;
     }
-    void setSaturation(float sat)
-    {
-        if (sat > 100) sat = 100;
-        else if (sat < 20) needsAttention = true;
-        this.saturation = sat;
-    }
     public float getHappiness() {
         return happiness;
-    }
-    private void setHappiness(float happiness) {
-        if (happiness < 20) needsAttention = true;
-        this.happiness = happiness;
     }
     public float getDiscipline() {
         return discipline;
@@ -54,8 +49,9 @@ public class Tamagotchi extends BaseDrawableActor
     public float getHealth() {
         return health;
     }
-    public void setHealth(float health) {
-        this.health = health;
+    public void setEnergy(float energy) { this.energy = energy; }
+    public float getEnergy() {
+        return energy;
     }
     public float getBody() {
         return body;
@@ -63,17 +59,77 @@ public class Tamagotchi extends BaseDrawableActor
     public void setBody(float body) {
         this.body = body;
     }
-    long getLastTimestamp() {
-        return lastTimestamp;
+
+    public void setHealth(float health)
+    {
+        if (health > 100)
+        {
+            health = 100;
+        }
+
+        if (health > 61)
+        {
+            isSick = false;
+            executeAction(new IdleAction());
+        }
+        else if (health > 0)
+        {
+            isSick = true;
+        }
+        else
+        {
+            executeAction(new DieAction());
+        }
+
+        this.health = health;
     }
-    private void setLastTimestamp(long lastTimestamp) {
-        this.lastTimestamp = lastTimestamp;
+
+
+    public void setPunishable(int seconds)
+    {
+        isPunishable = true;
+        new Timer().scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                Tamagotchi.this.isPunishable = false;
+            }
+        }, seconds);
+    }
+
+    void setSaturation(float sat)
+    {
+        if (sat > 100)
+        {
+            sat = 100;
+        }
+
+        if (sat < 20)
+        {
+            needsAttention = true;
+        }
+
+        this.saturation = sat;
+    }
+
+    public void setHappiness(float happiness)
+    {
+        if (happiness > 100)
+        {
+            happiness = 100;
+        }
+
+        if (happiness < 20)
+        {
+            needsAttention = true;
+        }
+
+        this.happiness = happiness;
     }
 
     private Tamagotchi()
     {
-        super(MyGame.skinDefault, "tama", 300, 250);
-        setPosition(Gdx.graphics.getWidth() / 2f - getWidth() / 2, Gdx.graphics.getHeight() / 2f - getHeight() / 2);
+        super("anim/tamagotchi/idle", 0.1f, 300, 300);
+        center();
         InputListener listener = new InputListener() {
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 return Tamagotchi.this.onClick();
@@ -88,109 +144,179 @@ public class Tamagotchi extends BaseDrawableActor
         setSaturation(serializable.saturation);
         setHappiness(serializable.happiness);
         setDiscipline(serializable.discipline);
-        setLastTimestamp(serializable.lastTimestamp);
+        setBody(serializable.body);
+        setEnergy(serializable.energy);
+        setHealth(serializable.health);
+        this.timestampSaturation = serializable.timestampSaturation;
+        this.timestampHappiness = serializable.timestampHappiness;
+        this.timestampHealth = serializable.timestampHealth;
+        this.timestampPoop = serializable.timestampPoop;
+        this.timestampRandomAttention = serializable.timestampRandomAttention;
+        this.punishableAttentionFlag = serializable.punishableAttentionFlag;
+        this.needsAttention = serializable.needsAttention;
+        this.isPunishable = serializable.isPunishable;
+        this.isSick = serializable.isSick;
+        this.hasActiveAction = serializable.hasActiveAction;
+        this.isAlive = serializable.isAlive;
     }
 
     public Tamagotchi(long timeStamp)
     {
         this();
-        setLastTimestamp(timeStamp);
+        this.timestampSaturation = timeStamp;
+        this.timestampHealth = timeStamp;
+        this.timestampHappiness = timeStamp;
+        this.timestampPoop = timeStamp;
+        this.timestampRandomAttention = timeStamp;
     }
 
-    private long getUpdateCountForStatus(int hours)
+    public void center()
     {
-        long elapsedTime = TimeUtils.timeSinceMillis(getLastTimestamp());
+        setPosition(Gdx.graphics.getWidth() / 2f - getWidth() / 2, Gdx.graphics.getHeight() / 2f - getHeight() / 2);
+    }
+
+    private long getUpdateCountForStatus(int hours, long timestamp)
+    {
+        long elapsedTime = TimeUtils.timeSinceMillis(timestamp);
         long hoursToMillis = 1000 * 60 * 60 * hours;
-        long ratio = hoursToMillis / maxValue;
+        long ratio = hoursToMillis / 100;
         return elapsedTime / ratio;
     }
 
-    private long getUpdateCount(int minutes)
+    private long getUpdateCount(int minutes, long timestamp)
     {
-        long elapsedTime = TimeUtils.timeSinceMillis(getLastTimestamp());
+        long elapsedTime = TimeUtils.timeSinceMillis(timestamp);
         long minutesToMillis = 1000 * 60 * minutes;
         return elapsedTime / minutesToMillis;
     }
 
-    public void update()
+    public void executeAction(final Action action)
+    {
+        if (hasActiveAction)
+        {
+            new Timer().scheduleTask(new Timer.Task() {
+                @Override
+                public void run() {
+                    executeAction(action);
+                }
+            }, 2);
+        }
+        else
+        {
+            hasActiveAction = true;
+            final float duration = action.execute(this);
+                new Timer().scheduleTask(new Timer.Task() {
+                    @Override
+                    public void run() {
+                        Tamagotchi.this.hasActiveAction = false;
+                        if (duration > 0)
+                        {
+                            action.dispose(Tamagotchi.this);
+                        }
+                    }
+                }, duration);
+        }
+    }
+
+
+    public void update(boolean isForeground)
     {
         Gdx.app.debug(TAG, "update()");
 
-        int saturationCounter =  (int) getUpdateCountForStatus(saturationLifespan);
-        for (int i=0; i<saturationCounter; i++)
+        if (!isAlive && isForeground)
         {
-            setSaturation(getSaturation() - 1);
-        }
-
-        int happinessCounter = (int) getUpdateCountForStatus(happinessLifespan);
-        for (int i=0; i<happinessCounter; i++)
-        {
-            setHappiness(getHappiness() - 1);
-        }
-
-        int poopCounter = (int) getUpdateCount(poopCycle);
-        for (int i=0; i<poopCounter; i++)
-        {
-            poop();
-        }
-
-        if (needsAttention)
-        {
-            showAttention();
-        }
-
-        if (happinessCounter > 0 || saturationCounter > 0 || poopCounter > 0)
-        {
-            Gdx.app.debug(TAG,"Updated Values.");
-            setLastTimestamp(TimeUtils.millis());
-            Gdx.app.debug(TAG, toString());
-        }
-    }
-
-    private void showAttention()
-    {
-        MyGame.getInstance().getMainScreen().showAttention();
-    }
-
-    private void hideAttention()
-    {
-        MyGame.getInstance().getMainScreen().hideAttention();
-    }
-
-    public void giveSnack()
-    {
-        Gdx.app.debug(TAG, "giveSnack()");
-        setHealth(getHealth() - 20);
-        setSaturation(getSaturation() + 20);
-        setHappiness(getHappiness() + 30);
-        Gdx.app.debug(TAG,toString());
-    }
-
-    public void giveMeal()
-    {
-        Gdx.app.debug(TAG, "giveMeal()");
-        if (getSaturation() > 99)
-        {
-            MyGame.getInstance().getAndroid().toast("Your Tamagotchi is not hungry.");
+            executeAction(new DieAction());
             return;
         }
-        setSaturation(getSaturation() + 20);
-        Gdx.app.debug(TAG,toString());
-    }
 
-    public void poop()
-    {
-        Poop poop = new Poop();
-        int maxY = (int) (Gdx.graphics.getHeight() - MyGame.getInstance().getMainScreen().getTabBar().getHeight() - poop.getHeight());
-        int maxX = (int) (Gdx.graphics.getWidth() - poop.getWidth());
-        int x,y;
-        Random rand = new Random();
-        do {
-            x = rand.nextInt(maxX);
-            y = rand.nextInt(maxY);
-        } while (getRectangle().contains(x,y));
-        poop.setPosition(x, y);
-        MyGame.getInstance().getMainScreen().getStage().addActor(poop);
+        long systemtime = System.currentTimeMillis();
+
+        if (isForeground)
+        {
+            if (punishableAttentionFlag)
+            {
+                long updateCount = getUpdateCount(1, timestampRandomAttention);
+                if(updateCount < 1)
+                {
+                    Gdx.app.debug(TAG,"You made it in Time! 30 seconds left to punish");
+                    setPunishable(30);
+                }
+                else
+                {
+                    Gdx.app.debug(TAG,"You missed the Time-Window!");
+                }
+                punishableAttentionFlag = false;
+            }
+        }
+
+        int saturationCounter =  (int) getUpdateCountForStatus(saturationLifespan, timestampSaturation);
+        if (saturationCounter > 0)
+        {
+            for (int i=0; i<saturationCounter; i++)
+            {
+                setSaturation(getSaturation() - 1);
+            }
+            timestampSaturation = systemtime;
+        }
+
+        int happinessCounter = (int) getUpdateCountForStatus(happinessLifespan, timestampHappiness);
+        if (happinessCounter > 0)
+        {
+            for (int i=0; i<happinessCounter; i++)
+            {
+                setHappiness(getHappiness() - 1);
+            }
+            timestampHappiness = systemtime;
+        }
+
+        int healthCounter = (int) getUpdateCountForStatus(healthRegenerationDuration, timestampHealth);
+        if (healthCounter > 0)
+        {
+            for (int i=0; i<healthCounter; i++)
+            {
+                setHealth(getHealth() + 1);
+            }
+            timestampHealth = systemtime;
+        }
+
+        int poopCounter = (int) getUpdateCount(poopCycle, timestampPoop);
+        if (poopCounter > 0)
+        {
+            // poop()
+        }
+
+        int randomAttentionCounter = (int) getUpdateCount(randomAttentionCycle, timestampRandomAttention);
+        if (randomAttentionCounter > 0)
+        {
+            if (Utils.oneIn(5))
+            {
+                if (isForeground)
+                {
+                    needsAttention = true;
+                    setPunishable(30);
+                }
+                else
+                {
+                    punishableAttentionFlag = true;
+                }
+            }
+            else if (Utils.oneIn(10))
+            {
+                executeAction(new SickAction());
+            }
+            timestampRandomAttention = systemtime;
+        }
+
+        if (needsAttention && !isSick)
+        {
+            MyGame.getInstance().getMainScreen().showAttention();
+        }
+
+        if (isSick)
+        {
+            executeAction(new SickAction());
+            setHealth(getHealth() - 1);
+        }
     }
 
     public TamagotchiSerializable getSerializable()
@@ -200,12 +326,7 @@ public class Tamagotchi extends BaseDrawableActor
 
     private boolean onClick()
     {
-        Gdx.app.debug(TAG, "onClick()");
-        if (needsAttention)
-        {
-            hideAttention();
-            needsAttention = false;
-        }
+        executeAction(new ClickAction());
         return false;
     }
 

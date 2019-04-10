@@ -4,82 +4,79 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Array;
-
+import com.badlogic.gdx.utils.Timer;
 import io.samyemmy.github.BaseDrawableActor;
+import io.samyemmy.github.GameScreen;
 import io.samyemmy.github.MyGame;
+import io.samyemmy.github.Utils;
+import io.samyemmy.github.tamagotchi.DisciplineAction;
+import io.samyemmy.github.tamagotchi.PatchUpAction;
+import io.samyemmy.github.tamagotchi.PlayAction;
+import io.samyemmy.github.tamagotchi.Tamagotchi;
+import io.samyemmy.github.ui.ImageTextButton;
 
-public class ChooseActionContent extends Table implements DialogContent
+public class ChooseActionContent extends Table
 {
-    private int maxBtns = 8;
-    private Array<BaseDrawableActor> launchButtons = new Array<BaseDrawableActor>(true, maxBtns, BaseDrawableActor.class);
+    private int buttons = 0;
     private InputListener listener;
     private ActionDialog dialog;
 
-    ChooseActionContent(ActionDialog dialog)
+    ChooseActionContent()
     {
-        this.dialog = dialog;
+        setFillParent(true);
         this.listener = new InputListener() {
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 return ChooseActionContent.this.onClick(event.getListenerActor());
             }
         };
-
-        setHeight(getHeight()*5/6);
-        setPosition(dialog.getWidth() / 2 - getWidth() / 2,dialog.getHeight() / 2 - getHeight() / 2 - 320);
-
-        addButton("food");
-        addButton("cross");
-        addButton("toilet");
-        addButton("message");
-
-        for (int i=0; i<launchButtons.items.length; i++)
-        {
-            BaseDrawableActor actor = this.launchButtons.items[i];
-            add(actor).pad(100);
-            if (i % 2 == 1) row();
-        }
     }
 
-    private void addButton(String fileName)
+    ChooseActionContent(ActionDialog dialog)
     {
-        BaseDrawableActor button = new BaseDrawableActor(MyGame.skinDefault, fileName, 150, 150);
-        button.addListener(listener);
-        this.launchButtons.add(button);
+        this();
+        this.dialog = dialog;
+        addButton("Feed","icons/food");
+        addButton("First Aid","icons/heart");
+        addButton("Play","icons/controller");
+        addButton("Discipline","icons/discipline");
     }
 
-    private boolean onClick(Actor actor) {
+    void addButton(String label, String fileName)
+    {
+        BaseDrawableActor image = new BaseDrawableActor(fileName, 220, 220);
+        ImageTextButton imageTextButton = new ImageTextButton(label, 30, image);
+        imageTextButton.addListener(listener);
+        add(imageTextButton).pad(100);
+        if (buttons % 2 == 1)
+        {
+            row();
+        }
+        buttons++;
+    }
+
+    boolean onClick(Actor actor) {
+        final Tamagotchi tamagotchi = MyGame.getInstance().getTamagotchi();
         String actorName = actor.getName();
         if (actorName.equals("background"))
         {
             return true;
         }
-        if (actorName.equals("food"))
+        if (actorName.equals("Feed"))
         {
             dialog.setActiveContent(dialog.getChooseMealContent());
         }
-        else if (actorName.equals("cross"))
+        else if (actorName.equals("Play"))
         {
-
+            tamagotchi.executeAction(new PlayAction(dialog));
         }
-        else if (actorName.equals("toilet"))
+        else if (actorName.equals("First Aid"))
         {
-
+            tamagotchi.executeAction(new PatchUpAction(dialog));
         }
-        else if (actorName.equals("message"))
+        else if (actorName.equals("Discipline"))
         {
-
-        }
-        else if (actorName.equals("clock"))
-        {
-
-        }
-        return false;
+            tamagotchi.executeAction(new DisciplineAction(dialog));
     }
-
-    @Override
-    public String getTitle()
-    {
-        return "Choose Action";
+        return false;
     }
 }

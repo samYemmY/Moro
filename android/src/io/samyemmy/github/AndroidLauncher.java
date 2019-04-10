@@ -28,7 +28,9 @@ public class AndroidLauncher extends AndroidApplication implements Android{
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		config.useAccelerometer = false;
 		config.useCompass = false;
-		initialize(MyGame.getInstance(this), config);
+		MyGame myGame = MyGame.getInstance();
+		myGame.setAndroid(this);
+		initialize(myGame, config);
 	}
 
 	@Override
@@ -51,6 +53,16 @@ public class AndroidLauncher extends AndroidApplication implements Android{
 			@Override
 			public void run() {
 				Toast.makeText(AndroidLauncher.this, msg, Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+
+	public void longToast(final String msg)
+	{
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				Toast.makeText(AndroidLauncher.this, msg, Toast.LENGTH_LONG).show();
 			}
 		});
 	}

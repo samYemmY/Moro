@@ -7,23 +7,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 import io.samyemmy.github.BaseDrawableActor;
 import io.samyemmy.github.Font;
+import io.samyemmy.github.FontActor;
 import io.samyemmy.github.MyGame;
 
 public class ActionDialog extends BaseDialog
 {
-    private DialogContent activeContent;
+    private ChooseActionContent activeContent;
+    private ChooseActionContent chooseActionContent;
+    private ChooseActionContent chooseMealContent;
 
-    public DialogContent getChooseActionContent() {
-        return chooseActionContent;
-    }
 
-    private DialogContent chooseActionContent;
-
-    public DialogContent getChooseMealContent() {
+    ChooseActionContent getChooseMealContent() {
         return chooseMealContent;
     }
-
-    private DialogContent chooseMealContent;
+    ChooseActionContent getChooseActionContent() {
+    return chooseActionContent;
+}
 
     public ActionDialog()
     {
@@ -41,14 +40,13 @@ public class ActionDialog extends BaseDialog
         setVisible(true);
     }
 
-    void setActiveContent(DialogContent content)
+    public void setActiveContent(ChooseActionContent content)
     {
         if (activeContent != null)
         {
-            removeActor((Actor) activeContent);
+            removeActor(activeContent);
         }
-        setTitle(content.getTitle());
-        addActor((Actor) content);
+        addActor(content);
         this.activeContent = content;
     }
 }

@@ -16,7 +16,7 @@ public class MyReceiver extends BroadcastReceiver
         if (!intent.getAction().equals(ACTION_TIMEMANAGER_EXECUTE)) return;
 
         Log.d(TAG, "onReceive()");
-        UpdateManager manager = new UpdateManager(context.getFilesDir());
-        manager.background();
+//        UpdateManager manager = new UpdateManager(context.getFilesDir());
+//        manager.background();
     }
 }

@@ -1,10 +1,11 @@
 package io.samyemmy.github;
 
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class BaseDrawableActor extends Actor
 {
@@ -14,12 +15,30 @@ public class BaseDrawableActor extends Actor
 
     public Rectangle getRectangle(){ return this.rectangle; }
 
-    public BaseDrawableActor(Skin skin, String fileName, float width, float height)
+    public BaseDrawableActor()
     {
-        setName(fileName);
-        this.textureRegion = skin.getRegion(fileName);
-        this.rectangle = new Rectangle((int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
+        this.rectangle = new Rectangle(getX(), getY(), getWidth(), getHeight());
+    }
+
+    public BaseDrawableActor(String fileName)
+    {
+        this.textureRegion = MyGame.SKIN.getRegion(fileName);
+        this.rectangle = new Rectangle(getX(), getY(), textureRegion.getRegionWidth(), textureRegion.getRegionHeight());
+        setSize(textureRegion.getRegionWidth(), textureRegion.getRegionHeight());
+    }
+
+    public BaseDrawableActor(String fileName, float width, float height)
+    {
+        this.textureRegion = MyGame.SKIN.getRegion(fileName);
+        this.rectangle = new Rectangle(getX(), getY(), getWidth(), getHeight());
         setSize(width, height);
+    }
+
+    public BaseDrawableActor(Pixmap pixmap)
+    {
+        this.textureRegion = new TextureRegion(new Texture(pixmap));
+        this.rectangle = new Rectangle(getX(), getY(), getWidth(), getHeight());
+        setSize(textureRegion.getRegionWidth(), textureRegion.getRegionHeight());
     }
 
     @Override

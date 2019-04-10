@@ -4,16 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
-import io.samyemmy.github.MyGame;
-import io.samyemmy.github.TabBar;
 import io.samyemmy.github.dialog.ActionDialog;
 import io.samyemmy.github.dialog.BaseDialog;
-import io.samyemmy.github.dialog.ChooseMealContent;
 import io.samyemmy.github.dialog.StatsDialog;
 import io.samyemmy.github.tamagotchi.Tamagotchi;
 
@@ -25,8 +22,11 @@ public class MainScreen implements Screen
     private ActionDialog actionDialog;
     private StatsDialog statsDialog;
     private UpdateManager updateManager;
-    private TabBar tabBar;
+    private MainScreenTabBar mainScreenTabBar;
     private BaseDrawableActor attentionSymbol;
+    private BaseDrawableActor sickSymbol;
+    private Tamagotchi tamagotchi;
+    private Group gameLayer;
 
 
     ActionDialog getActionDialog() {
@@ -39,9 +39,14 @@ public class MainScreen implements Screen
         return statsDialog;
     }
 
-    public TabBar getTabBar()
+    public Group getGameLayer()
     {
-        return this.tabBar;
+        return this.gameLayer;
+    }
+
+    public MainScreenTabBar getMainScreenTabBar()
+    {
+        return this.mainScreenTabBar;
     }
 
     public Stage getStage(){ return this.stage; }
@@ -56,24 +61,25 @@ public class MainScreen implements Screen
         cam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         this.camera = cam;
 
-        TabBar tabBar = new TabBar(this);
-        this.tabBar = tabBar;
+        this.mainScreenTabBar = new MainScreenTabBar(this);
+        this.gameLayer = new Group();
+        gameLayer.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight() - mainScreenTabBar.getHeight());
+        this.tamagotchi = MyGame.getInstance().getTamagotchi();
+        gameLayer.addActor(tamagotchi);
 
-        this.attentionSymbol = new BaseDrawableActor(MyGame.skinDefault, "attention", 50, 160);
-        Tamagotchi tamagotchi = MyGame.getInstance().getTamagotchi();
-        float y = tamagotchi.getY() + tamagotchi.getHeight();
-        float x = tamagotchi.getX() + tamagotchi.getWidth();
-        attentionSymbol.setPosition(x, y);
+        float y = tamagotchi.getY() + tamagotchi.getHeight() - 50;
+        float x = tamagotchi.getX() + tamagotchi.getWidth() - 50;
+        this.attentionSymbol = new BaseDrawableActor("icons/attention", 100, 100);
         attentionSymbol.setVisible(false);
+        attentionSymbol.setPosition(x, y);
+        gameLayer.addActor(attentionSymbol);
+        this.sickSymbol = new BaseDrawableActor("icons/skull", 100, 100);
+        sickSymbol.setVisible(false);
+        sickSymbol.setPosition(x, y);
+        gameLayer.addActor(sickSymbol);
 
-        Stage stage = new Stage(new StretchViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera));
-        stage.addActor(MyGame.getInstance().getTamagotchi());
-        stage.addActor(tabBar);
-        stage.addActor(actionDialog);
-        stage.addActor(statsDialog);
-        stage.addActor(attentionSymbol);
-        Gdx.input.setInputProcessor(stage);
-        this.stage = stage;
+        this.stage = new Stage(new StretchViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera));
+
         new Timer().scheduleTask(new Timer.Task() {
             @Override
             public void run() {
@@ -83,8 +89,16 @@ public class MainScreen implements Screen
     }
 
     @Override
-    public void show() {
+    public void show()
+    {
         Gdx.app.debug(TAG, "show()");
+        tamagotchi.center();
+        getGameLayer().addActor(tamagotchi);
+        stage.addActor(gameLayer);
+        stage.addActor(actionDialog);
+        stage.addActor(statsDialog);
+        stage.addActor(mainScreenTabBar);
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
@@ -99,14 +113,33 @@ public class MainScreen implements Screen
         stage.act();
     }
 
+    public void spawnFood(BaseDrawableActor actor)
+    {
+        actor.setPosition(tamagotchi.getX() + tamagotchi.getWidth() / 2 - actor.getWidth() / 2, tamagotchi.getY() - 50);
+        stage.addActor(actor);
+    }
+
     void toggleDialog(BaseDialog dialog)
     {
         dialog.toggle();
     }
 
-    public void showAttention(){ this.attentionSymbol.setVisible(true); }
-    public void hideAttention(){ this.attentionSymbol.setVisible(false); }
+    public void showAttention()
+    {
+        this.attentionSymbol.setVisible(true);
+    }
 
+    public void hideAttention()
+    {
+        this.attentionSymbol.setVisible(false);
+    }
+
+    public void showSick()
+    {
+        this.sickSymbol.setVisible(true);
+    }
+
+    public void hideSick(){ this.sickSymbol.setVisible(false); }
 
     @Override
     public void resize(int width, int height)

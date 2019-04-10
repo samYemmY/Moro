@@ -53,12 +53,44 @@ public class FileManager
         }
     }
 
+    Tamagotchi deserializeT()
+    {
+        try
+        {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            Tamagotchi tamagotchi = gson.fromJson(reader, Tamagotchi.class);
+            reader.close();
+            return tamagotchi;
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
     void serialize(TamagotchiSerializable tamagotchiSerializable)
     {
         try
         {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             String json = new Gson().toJson(tamagotchiSerializable);
+            writer.write(json);
+            writer.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    void serialize(Tamagotchi tamagotchi)
+    {
+        try
+        {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            String json = new Gson().toJson(tamagotchi);
             writer.write(json);
             writer.close();
         }

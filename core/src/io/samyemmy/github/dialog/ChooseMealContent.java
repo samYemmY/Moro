@@ -2,55 +2,47 @@ package io.samyemmy.github.dialog;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
+import io.samyemmy.github.AnimatedToast;
+import io.samyemmy.github.BaseDrawableActor;
+import io.samyemmy.github.Candy;
 import io.samyemmy.github.MyGame;
-import io.samyemmy.github.ui.TextButton;
+import io.samyemmy.github.Utils;
+import io.samyemmy.github.tamagotchi.CandyAction;
+import io.samyemmy.github.tamagotchi.MealAction;
+import io.samyemmy.github.tamagotchi.Tamagotchi;
 
-public class ChooseMealContent extends Table implements DialogContent
+public class ChooseMealContent extends ChooseActionContent
 {
     private static final String TAG = "ChooseMealContent";
     private ActionDialog dialog;
-    private InputListener listener;
 
     ChooseMealContent(ActionDialog dialog)
     {
+        super();
         this.dialog = dialog;
-        this.listener = new InputListener() {
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                return ChooseMealContent.this.onClick(event.getListenerActor());
-            }
-        };
-
-        setPosition(dialog.getWidth() / 2 - getWidth() / 2,dialog.getHeight() / 2 - getHeight() / 2);
-        add(new TextButton("Meal", "carrot", listener)).pad(100);
-        add(new TextButton("Snack", "candy", listener)).pad(100);
+        addButton("Meal","icons/toast");
+        addButton("Snack","icons/candy");
     }
 
-    private boolean onClick(Actor actor)
+    @Override
+    boolean onClick(Actor actor)
     {
         Gdx.app.debug(TAG, "onClick()");
+        Tamagotchi tamagotchi = MyGame.getInstance().getTamagotchi();
         String name = actor.getName();
-        boolean willClose = false;
-        if (name.equals("carrot"))
+        if (name.equals("Meal"))
         {
-            MyGame.getInstance().getTamagotchi().giveMeal();
+            tamagotchi.executeAction(new MealAction());
             dialog.hide();
             return true;
         }
-        else if (name.equals("candy"))
+        else if (name.equals("Snack"))
         {
-            MyGame.getInstance().getTamagotchi().giveSnack();
+            tamagotchi.executeAction(new CandyAction());
             dialog.hide();
             return true;
         }
         return false;
-    }
-
-    @Override
-    public String getTitle() {
-        return "Choose Meal";
     }
 }

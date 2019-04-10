@@ -1,246 +1,674 @@
 
 myAtlas.png
-size: 2048,2048
+size: 64,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-cross
-  rotate: false
-  xy: 2, 970
-  size: 1024, 1047
-  orig: 1024, 1047
-  offset: 0, 0
-  index: -1
-food
-  rotate: false
-  xy: 1028, 993
-  size: 1010, 1024
-  orig: 1010, 1024
-  offset: 0, 0
-  index: -1
-lampe
-  rotate: false
-  xy: 2, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
 poop
   rotate: false
-  xy: 1028, 11
-  size: 932, 980
-  orig: 932, 980
-  offset: 0, 0
-  index: -1
-tama
-  rotate: false
-  xy: 2, 104
-  size: 1024, 864
-  orig: 1024, 864
+  xy: 2, 2
+  size: 31, 31
+  orig: 31, 31
   offset: 0, 0
   index: -1
 
 myAtlas2.png
-size: 2048,2048
+size: 512,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-attention
+anim/food/candy
   rotate: false
-  xy: 1632, 100
-  size: 100, 257
-  orig: 100, 257
+  xy: 2, 45
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
-  index: -1
-clock
+  index: 0
+anim/food/candy
   rotate: false
-  xy: 1632, 359
-  size: 225, 225
-  orig: 225, 225
+  xy: 68, 45
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
-  index: -1
-controller
+  index: 1
+anim/food/candy
+  rotate: false
+  xy: 134, 45
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+anim/food/candy
+  rotate: false
+  xy: 200, 45
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+anim/food/candy
+  rotate: false
+  xy: 266, 45
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+anim/food/toast
   rotate: false
   xy: 2, 2
-  size: 1024, 582
-  orig: 1024, 582
+  size: 41, 41
+  orig: 41, 41
   offset: 0, 0
-  index: -1
-progressbar-0
+  index: 0
+anim/food/toast
   rotate: false
-  xy: 2, 1669
-  size: 2000, 359
-  orig: 2000, 359
+  xy: 332, 68
+  size: 41, 41
+  orig: 41, 41
   offset: 0, 0
-  index: -1
-progressbar-100
+  index: 1
+anim/food/toast
   rotate: false
-  xy: 2, 947
-  size: 2000, 359
-  orig: 2000, 359
+  xy: 45, 2
+  size: 41, 41
+  orig: 41, 41
   offset: 0, 0
-  index: -1
-progressbar-16,6
+  index: 2
+anim/food/toast
   rotate: false
-  xy: 2, 586
-  size: 2000, 359
-  orig: 2000, 359
+  xy: 375, 68
+  size: 41, 41
+  orig: 41, 41
   offset: 0, 0
-  index: -1
-progressbar-50
+  index: 3
+anim/food/toast
   rotate: false
-  xy: 2, 1308
-  size: 2000, 359
-  orig: 2000, 359
+  xy: 88, 2
+  size: 41, 41
+  orig: 41, 41
   offset: 0, 0
-  index: -1
-sick
-  rotate: false
-  xy: 1430, 177
-  size: 200, 407
-  orig: 200, 407
-  offset: 0, 0
-  index: -1
-x
-  rotate: false
-  xy: 1028, 122
-  size: 400, 462
-  orig: 400, 462
-  offset: 0, 0
-  index: -1
+  index: 4
 
 myAtlas3.png
-size: 2048,2048
+size: 1024,256
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-arrow-up
+anim/tamagotchi/dead
   rotate: false
-  xy: 2, 1146
-  size: 1024, 794
-  orig: 1024, 794
+  xy: 2, 134
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
-  index: -1
-dialog
+  index: 0
+anim/tamagotchi/eating
   rotate: false
-  xy: 1028, 916
-  size: 759, 1024
-  orig: 759, 1024
+  xy: 2, 68
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
-  index: -1
-progressbar-33,3
+  index: 0
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 2, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 8
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 2, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 0
+anim/tamagotchi/eating
+  rotate: false
+  xy: 68, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+anim/tamagotchi/eating
+  rotate: false
+  xy: 68, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+anim/tamagotchi/eating
   rotate: false
   xy: 2, 2
-  size: 2000, 359
-  orig: 2000, 359
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
-  index: -1
-waage
+  index: 2
+anim/tamagotchi/eating
   rotate: false
-  xy: 2, 363
-  size: 1024, 781
-  orig: 1024, 781
+  xy: 2, 2
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
-  index: -1
+  index: 6
+anim/tamagotchi/eating
+  rotate: false
+  xy: 68, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+anim/tamagotchi/eating
+  rotate: false
+  xy: 68, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+anim/tamagotchi/eating
+  rotate: false
+  xy: 134, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+anim/tamagotchi/happy
+  rotate: false
+  xy: 68, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 0
+anim/tamagotchi/happy
+  rotate: false
+  xy: 134, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+anim/tamagotchi/happy
+  rotate: false
+  xy: 134, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+anim/tamagotchi/happy
+  rotate: false
+  xy: 200, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+anim/tamagotchi/happy
+  rotate: false
+  xy: 200, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+anim/tamagotchi/happy
+  rotate: false
+  xy: 134, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+anim/tamagotchi/happy
+  rotate: false
+  xy: 134, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+anim/tamagotchi/happy
+  rotate: false
+  xy: 200, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+anim/tamagotchi/idle
+  rotate: false
+  xy: 266, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 0
+anim/tamagotchi/idle
+  rotate: false
+  xy: 200, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+anim/tamagotchi/idle
+  rotate: false
+  xy: 200, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+anim/tamagotchi/idle
+  rotate: false
+  xy: 266, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+anim/tamagotchi/idle
+  rotate: false
+  xy: 266, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+anim/tamagotchi/idle
+  rotate: false
+  xy: 332, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+anim/tamagotchi/idle
+  rotate: false
+  xy: 332, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+anim/tamagotchi/idle
+  rotate: false
+  xy: 266, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+anim/tamagotchi/sad
+  rotate: false
+  xy: 332, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 0
+anim/tamagotchi/sad
+  rotate: false
+  xy: 398, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+anim/tamagotchi/sad
+  rotate: false
+  xy: 398, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+anim/tamagotchi/sad
+  rotate: false
+  xy: 332, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+anim/tamagotchi/sad
+  rotate: false
+  xy: 332, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+anim/tamagotchi/sad
+  rotate: false
+  xy: 398, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+anim/tamagotchi/sad
+  rotate: false
+  xy: 398, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+anim/tamagotchi/sad
+  rotate: false
+  xy: 464, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 398, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 398, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 464, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 464, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 6
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 530, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 530, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 464, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 530, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 9
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 530, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 15
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 596, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 10
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 596, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 14
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 530, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 11
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 530, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 13
+anim/tamagotchi/shaking_head
+  rotate: false
+  xy: 596, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 12
+anim/tamagotchi/sick
+  rotate: false
+  xy: 662, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 0
+anim/tamagotchi/sick
+  rotate: false
+  xy: 596, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+anim/tamagotchi/sick
+  rotate: false
+  xy: 596, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+anim/tamagotchi/sick
+  rotate: false
+  xy: 662, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+anim/tamagotchi/sick
+  rotate: false
+  xy: 662, 68
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+anim/tamagotchi/sick
+  rotate: false
+  xy: 728, 134
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
 
 myAtlas4.png
-size: 2048,2048
+size: 512,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-carrot
+icons/attention
   rotate: false
-  xy: 2, 2
-  size: 1024, 461
-  orig: 1024, 461
+  xy: 312, 30
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
-ei
+icons/candy
   rotate: false
-  xy: 1028, 216
-  size: 725, 1024
-  orig: 725, 1024
+  xy: 105, 20
+  size: 42, 42
+  orig: 42, 42
   offset: 0, 0
   index: -1
-menu
+icons/controller
   rotate: false
-  xy: 2, 465
-  size: 1024, 775
-  orig: 1024, 775
+  xy: 56, 15
+  size: 47, 47
+  orig: 47, 47
   offset: 0, 0
   index: -1
-progressbar-66,6
+icons/discipline
   rotate: false
-  xy: 2, 1603
-  size: 2000, 359
-  orig: 2000, 359
+  xy: 149, 21
+  size: 41, 41
+  orig: 41, 41
   offset: 0, 0
   index: -1
-progressbar-83,3
+icons/food
   rotate: false
-  xy: 2, 1242
-  size: 2000, 359
-  orig: 2000, 359
+  xy: 235, 22
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+icons/heart
+  rotate: false
+  xy: 277, 29
+  size: 33, 33
+  orig: 33, 33
+  offset: 0, 0
+  index: -1
+icons/skull
+  rotate: false
+  xy: 56, 2
+  size: 13, 11
+  orig: 13, 11
+  offset: 0, 0
+  index: -1
+icons/syringe
+  rotate: false
+  xy: 2, 10
+  size: 52, 52
+  orig: 52, 52
+  offset: 0, 0
+  index: -1
+icons/toast
+  rotate: false
+  xy: 192, 21
+  size: 41, 41
+  orig: 41, 41
   offset: 0, 0
   index: -1
 
 myAtlas5.png
-size: 2048,2048
+size: 1024,256
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-candy
+ui/arrow-down
   rotate: false
-  xy: 2, 648
-  size: 1024, 644
-  orig: 1024, 644
+  xy: 431, 24
+  size: 42, 42
+  orig: 42, 42
   offset: 0, 0
   index: -1
-candy_green
+ui/arrow-up
   rotate: false
-  xy: 2, 2
-  size: 1024, 644
-  orig: 1024, 644
+  xy: 475, 24
+  size: 42, 42
+  orig: 42, 42
   offset: 0, 0
   index: -1
-message
+ui/border
   rotate: false
-  xy: 2, 1294
-  size: 1024, 705
-  orig: 1024, 705
+  xy: 948, 170
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
   index: -1
-toilet
+ui/border-top
   rotate: false
-  xy: 1028, 975
-  size: 705, 1024
-  orig: 705, 1024
+  xy: 299, 2
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
   index: -1
-
-myAtlas6.png
-size: 2048,2048
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-carrot_green
+ui/close
   rotate: false
-  xy: 2, 2
-  size: 1024, 461
-  orig: 1024, 461
+  xy: 365, 2
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
   index: -1
-syringe
+ui/progressbar-0
   rotate: false
-  xy: 2, 465
-  size: 626, 1024
-  orig: 626, 1024
+  xy: 2, 142
+  size: 295, 40
+  orig: 295, 40
   offset: 0, 0
   index: -1
-syringe_green
+ui/progressbar-10
   rotate: false
-  xy: 630, 465
-  size: 626, 1024
-  orig: 626, 1024
+  xy: 354, 194
+  size: 295, 40
+  orig: 295, 40
+  offset: 0, 0
+  index: -1
+ui/progressbar-100
+  rotate: false
+  xy: 596, 110
+  size: 295, 40
+  orig: 295, 40
+  offset: 0, 0
+  index: -1
+ui/progressbar-20
+  rotate: false
+  xy: 2, 100
+  size: 295, 40
+  orig: 295, 40
+  offset: 0, 0
+  index: -1
+ui/progressbar-30
+  rotate: false
+  xy: 651, 194
+  size: 295, 40
+  orig: 295, 40
+  offset: 0, 0
+  index: -1
+ui/progressbar-40
+  rotate: false
+  xy: 2, 58
+  size: 295, 40
+  orig: 295, 40
+  offset: 0, 0
+  index: -1
+ui/progressbar-50
+  rotate: false
+  xy: 2, 16
+  size: 295, 40
+  orig: 295, 40
+  offset: 0, 0
+  index: -1
+ui/progressbar-60
+  rotate: false
+  xy: 354, 152
+  size: 295, 40
+  orig: 295, 40
+  offset: 0, 0
+  index: -1
+ui/progressbar-70
+  rotate: false
+  xy: 651, 152
+  size: 295, 40
+  orig: 295, 40
+  offset: 0, 0
+  index: -1
+ui/progressbar-80
+  rotate: false
+  xy: 299, 110
+  size: 295, 40
+  orig: 295, 40
+  offset: 0, 0
+  index: -1
+ui/progressbar-90
+  rotate: false
+  xy: 299, 68
+  size: 295, 40
+  orig: 295, 40
+  offset: 0, 0
+  index: -1
+ui/tab-bar
+  rotate: false
+  xy: 2, 184
+  size: 350, 50
+  orig: 350, 50
   offset: 0, 0
   index: -1
