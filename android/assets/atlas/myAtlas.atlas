@@ -17,6 +17,54 @@ size: 512,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+anim/zzz
+  rotate: false
+  xy: 2, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 0
+anim/zzz
+  rotate: false
+  xy: 68, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 1
+anim/zzz
+  rotate: false
+  xy: 134, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 2
+anim/zzz
+  rotate: false
+  xy: 200, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 3
+anim/zzz
+  rotate: false
+  xy: 266, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+anim/zzz
+  rotate: false
+  xy: 332, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 5
+
+myAtlas3.png
+size: 512,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
 anim/food/candy
   rotate: false
   xy: 2, 45
@@ -88,7 +136,7 @@ anim/food/toast
   offset: 0, 0
   index: 4
 
-myAtlas3.png
+myAtlas4.png
 size: 1024,256
 format: RGBA8888
 filter: Nearest,Nearest
@@ -113,14 +161,14 @@ anim/tamagotchi/shaking_head
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 8
+  index: 0
 anim/tamagotchi/shaking_head
   rotate: false
   xy: 2, 68
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 0
+  index: 8
 anim/tamagotchi/eating
   rotate: false
   xy: 68, 134
@@ -179,6 +227,13 @@ anim/tamagotchi/happy
   index: 0
 anim/tamagotchi/happy
   rotate: false
+  xy: 68, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 4
+anim/tamagotchi/happy
+  rotate: false
   xy: 134, 68
   size: 64, 64
   orig: 64, 64
@@ -190,7 +245,7 @@ anim/tamagotchi/happy
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 7
+  index: 3
 anim/tamagotchi/happy
   rotate: false
   xy: 200, 134
@@ -200,20 +255,6 @@ anim/tamagotchi/happy
   index: 2
 anim/tamagotchi/happy
   rotate: false
-  xy: 200, 134
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 6
-anim/tamagotchi/happy
-  rotate: false
-  xy: 134, 2
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 3
-anim/tamagotchi/happy
-  rotate: false
   xy: 134, 2
   size: 64, 64
   orig: 64, 64
@@ -221,11 +262,18 @@ anim/tamagotchi/happy
   index: 5
 anim/tamagotchi/happy
   rotate: false
+  xy: 134, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 7
+anim/tamagotchi/happy
+  rotate: false
   xy: 200, 68
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
-  index: 4
+  index: 6
 anim/tamagotchi/idle
   rotate: false
   xy: 266, 134
@@ -478,8 +526,15 @@ anim/tamagotchi/sick
   orig: 64, 64
   offset: 0, 0
   index: 3
+anim/tamagotchi/sleeping
+  rotate: false
+  xy: 662, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 0
 
-myAtlas4.png
+myAtlas5.png
 size: 512,64
 format: RGBA8888
 filter: Nearest,Nearest
@@ -548,7 +603,7 @@ icons/toast
   offset: 0, 0
   index: -1
 
-myAtlas5.png
+myAtlas6.png
 size: 1024,256
 format: RGBA8888
 filter: Nearest,Nearest

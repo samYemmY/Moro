@@ -1,12 +1,10 @@
 package io.samyemmy.github.dialog;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import io.samyemmy.github.ui.StatusBar;
 
 public class StatsDialog extends BaseDialog
 {
-    private static final String TAG = "StatsDialog";
     private StatusBar statusBarHappiness;
     private StatusBar statusBarSaturation;
     private StatusBar statusBarEnergy;
@@ -28,7 +26,6 @@ public class StatsDialog extends BaseDialog
     public StatsDialog()
     {
         super("Stats");
-        Gdx.app.debug(TAG, "StatsDialog()");
         this.statusBarSaturation = new StatusBar("Saturation");
         this.statusBarHappiness = new StatusBar("Happiness");
         this.statusBarEnergy = new StatusBar("Energy");

@@ -18,7 +18,7 @@ public class AnimatedToast extends AnimatableActor
 
 
     @Override
-    void onAnimationFinished() {
+    protected void onAnimationFinished() {
         super.onAnimationFinished();
         Gdx.app.debug(TAG, "onAnimationFinished()");
         remove();

@@ -3,17 +3,16 @@ package io.samyemmy.github;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class BaseDrawableActor extends Actor
 {
-    private static final String TAG = "BaseDrawableActor";
-    private TextureRegion textureRegion;
+    private TextureRegionDrawable textureRegionDrawable;
     private Rectangle rectangle;
 
-    public Rectangle getRectangle(){ return this.rectangle; }
+    protected TextureRegionDrawable getTextureRegionDrawable(){ return this.textureRegionDrawable; }
 
     public BaseDrawableActor()
     {
@@ -22,23 +21,23 @@ public class BaseDrawableActor extends Actor
 
     public BaseDrawableActor(String fileName)
     {
-        this.textureRegion = MyGame.SKIN.getRegion(fileName);
-        this.rectangle = new Rectangle(getX(), getY(), textureRegion.getRegionWidth(), textureRegion.getRegionHeight());
-        setSize(textureRegion.getRegionWidth(), textureRegion.getRegionHeight());
+        this.textureRegionDrawable = (TextureRegionDrawable) MyGame.SKIN.getDrawable(fileName);
+        this.rectangle = new Rectangle(getX(), getY(), textureRegionDrawable.getRegion().getRegionWidth(), textureRegionDrawable.getRegion().getRegionHeight());
+        setSize(textureRegionDrawable.getRegion().getRegionWidth(), textureRegionDrawable.getRegion().getRegionHeight());
     }
 
     public BaseDrawableActor(String fileName, float width, float height)
     {
-        this.textureRegion = MyGame.SKIN.getRegion(fileName);
+        this.textureRegionDrawable = (TextureRegionDrawable) MyGame.SKIN.getDrawable(fileName);
         this.rectangle = new Rectangle(getX(), getY(), getWidth(), getHeight());
         setSize(width, height);
     }
 
     public BaseDrawableActor(Pixmap pixmap)
     {
-        this.textureRegion = new TextureRegion(new Texture(pixmap));
+        this.textureRegionDrawable = new TextureRegionDrawable(new Texture(pixmap));
         this.rectangle = new Rectangle(getX(), getY(), getWidth(), getHeight());
-        setSize(textureRegion.getRegionWidth(), textureRegion.getRegionHeight());
+        setSize(textureRegionDrawable.getRegion().getRegionWidth(), textureRegionDrawable.getRegion().getRegionHeight());
     }
 
     @Override
@@ -58,13 +57,13 @@ public class BaseDrawableActor extends Actor
         super.draw(batch, parentAlpha);
         if (isVisible())
         {
-            batch.draw(textureRegion, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(),getScaleX(), getScaleY(), getRotation());
+            textureRegionDrawable.draw(batch, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(),getScaleX(), getScaleY(), getRotation());
         }
     }
 
-    public void setTextureRegion(TextureRegion textureRegion, float width, float height)
+    public void setTextureRegionDrawable(TextureRegionDrawable textureRegionDrawable, float width, float height)
     {
-        this.textureRegion = textureRegion;
+        this.textureRegionDrawable = textureRegionDrawable;
         setSize(width, height);
     }
 

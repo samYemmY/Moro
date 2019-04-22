@@ -4,15 +4,16 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Timer;
+
+import io.samyemmy.github.ActionQueue;
 import io.samyemmy.github.BaseDrawableActor;
-import io.samyemmy.github.GameScreen;
 import io.samyemmy.github.MyGame;
-import io.samyemmy.github.Utils;
-import io.samyemmy.github.tamagotchi.DisciplineAction;
-import io.samyemmy.github.tamagotchi.PatchUpAction;
-import io.samyemmy.github.tamagotchi.PlayAction;
-import io.samyemmy.github.tamagotchi.Tamagotchi;
+import io.samyemmy.github.SoundHandler;
+import io.samyemmy.github.action.DieAction;
+import io.samyemmy.github.action.DisciplineAction;
+import io.samyemmy.github.action.PatchUpAction;
+import io.samyemmy.github.action.PlayAction;
+import io.samyemmy.github.Tamagotchi;
 import io.samyemmy.github.ui.ImageTextButton;
 
 public class ChooseActionContent extends Table
@@ -55,7 +56,7 @@ public class ChooseActionContent extends Table
     }
 
     boolean onClick(Actor actor) {
-        final Tamagotchi tamagotchi = MyGame.getInstance().getTamagotchi();
+        ActionQueue queue = MyGame.getInstance().getActionQueue();
         String actorName = actor.getName();
         if (actorName.equals("background"))
         {
@@ -63,20 +64,21 @@ public class ChooseActionContent extends Table
         }
         if (actorName.equals("Feed"))
         {
+            SoundHandler.getInstance().playSound("click");
             dialog.setActiveContent(dialog.getChooseMealContent());
         }
         else if (actorName.equals("Play"))
         {
-            tamagotchi.executeAction(new PlayAction(dialog));
+            queue.add(new PlayAction(dialog));
         }
         else if (actorName.equals("First Aid"))
         {
-            tamagotchi.executeAction(new PatchUpAction(dialog));
+            queue.add(new PatchUpAction(dialog));
         }
         else if (actorName.equals("Discipline"))
         {
-            tamagotchi.executeAction(new DisciplineAction(dialog));
-    }
+            queue.add(new DisciplineAction(dialog));
+        }
         return false;
     }
 }

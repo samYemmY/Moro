@@ -8,6 +8,8 @@ public class AnimatableActor extends BaseDrawableActor {
     private Animation<TextureRegion> animation;
     private float stateTime;
 
+    public AnimatableActor(){}
+
     public AnimatableActor(String animationName, float frameDuration, int width, int height)
     {
         setSize(width, height);
@@ -37,7 +39,7 @@ public class AnimatableActor extends BaseDrawableActor {
         }
     }
 
-    void onAnimationFinished(){}
+    protected void onAnimationFinished(){}
 
     @Override
     public void draw(Batch batch, float parentAlpha) {

@@ -17,7 +17,7 @@ android {
     }
     defaultConfig {
         applicationId "io.samyemmy.github"
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"

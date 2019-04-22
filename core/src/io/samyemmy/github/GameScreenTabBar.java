@@ -1,5 +1,9 @@
 package io.samyemmy.github;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
+
+import io.samyemmy.github.screen.GameScreen;
+
 public class GameScreenTabBar extends BaseTabBar
 {
     GameScreen gameScreen;
@@ -12,10 +16,11 @@ public class GameScreenTabBar extends BaseTabBar
     }
 
     @Override
-    void onClick(String action)
+    void onClick(String action, Actor actor)
     {
         if (action.equals("Close"))
         {
+            SoundHandler.getInstance().playSound("select");
             gameScreen.quit();
         }
     }

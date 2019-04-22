@@ -1,12 +1,10 @@
 package io.samyemmy.github;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+
+import io.samyemmy.github.action.SleepAction;
+import io.samyemmy.github.action.WakeUpAction;
+import io.samyemmy.github.screen.MainScreen;
 
 public class MainScreenTabBar extends BaseTabBar
 {
@@ -18,21 +16,36 @@ public class MainScreenTabBar extends BaseTabBar
         this.mainScreen = screen;
         addButton("Stats");
         addButton("Actions");
-        addButton("Light");
+        addButton("Sleep");
     }
 
     @Override
-    void onClick(String action)
+    void onClick(String action, Actor actor)
     {
         if (action.equals("Actions"))
         {
+            SoundHandler.getInstance().playSound("click");
             mainScreen.getStatsDialog().hide();
             mainScreen.toggleDialog(mainScreen.getActionDialog());
         }
         else if (action.equals("Stats"))
         {
+            SoundHandler.getInstance().playSound("click");
             mainScreen.getActionDialog().hide();
             mainScreen.toggleDialog(mainScreen.getStatsDialog());
+        }
+        else if (action.equals("Sleep"))
+        {
+            SoundHandler.getInstance().playSound("select");
+            Tamagotchi tamagotchi = MyGame.getInstance().getTamagotchi();
+            if (tamagotchi.isSleeping)
+            {
+                MyGame.getInstance().getActionQueue().add(new WakeUpAction());
+            }
+            else
+            {
+                MyGame.getInstance().getActionQueue().add(new SleepAction());
+            }
         }
     }
 }

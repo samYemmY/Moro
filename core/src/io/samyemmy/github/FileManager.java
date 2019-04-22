@@ -9,12 +9,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import io.samyemmy.github.tamagotchi.Tamagotchi;
-import io.samyemmy.github.tamagotchi.TamagotchiSerializable;
-
 public class FileManager
 {
-    private static final String TAG = "FileManager";
     private Gson gson;
     private String fileName = "Tamagotchi.json";
     private File file;
@@ -29,7 +25,6 @@ public class FileManager
             try
             {
                 this.file.createNewFile();
-                Gdx.app.debug(TAG,"Created new File: " + file);
                 Tamagotchi tamagotchi = new Tamagotchi(System.currentTimeMillis());
                 serialize(tamagotchi.getSerializable());
             }
@@ -53,22 +48,6 @@ public class FileManager
         }
     }
 
-    Tamagotchi deserializeT()
-    {
-        try
-        {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            Tamagotchi tamagotchi = gson.fromJson(reader, Tamagotchi.class);
-            reader.close();
-            return tamagotchi;
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
 
     void serialize(TamagotchiSerializable tamagotchiSerializable)
     {
@@ -76,21 +55,6 @@ public class FileManager
         {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             String json = new Gson().toJson(tamagotchiSerializable);
-            writer.write(json);
-            writer.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    void serialize(Tamagotchi tamagotchi)
-    {
-        try
-        {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            String json = new Gson().toJson(tamagotchi);
             writer.write(json);
             writer.close();
         }

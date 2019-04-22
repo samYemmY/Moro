@@ -3,25 +3,22 @@ package io.samyemmy.github;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Array;
 
 public class BaseTabBar extends Table
 {
     Screen screen;
     private TextButton.TextButtonStyle textButtonStyle;
-    private TextButton textButtonStats;
-    private TextButton textButtonActions;
-    private TextButton textButtonLight;
+    protected Array<TextButton> buttons;
 
     public BaseTabBar(Screen screen)
     {
         this.screen = screen;
+        this.buttons = new Array<TextButton>();
         float height = 200;
         setBounds(0, Gdx.graphics.getHeight() - height, Gdx.graphics.getWidth(), height);
 
@@ -34,14 +31,28 @@ public class BaseTabBar extends Table
     void addButton(final String text)
     {
         TextButton txtBtnStats = new TextButton(text, textButtonStyle);
+        txtBtnStats.setName(text);
         txtBtnStats.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                BaseTabBar.this.onClick(text);
+                BaseTabBar.this.onClick(text, actor);
             }
         });
         add(txtBtnStats).grow();
+        buttons.add(txtBtnStats);
     }
 
-    void onClick(String action) {}
+    public TextButton getButton(String name)
+    {
+        for(TextButton button : buttons)
+        {
+            if (button.getName().equals(name))
+            {
+                return button;
+            }
+        }
+        return null;
+    }
+
+    void onClick(String action, Actor actor) {}
 }
