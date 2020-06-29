@@ -1,3 +1,3 @@
 # Moro
 
-The goal is simple: <b>keep Moro alive!</b><br>
+The goal is simple. Keep Moro alive!
